@@ -1,15 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'sqlplus'
-        }
-    }
+    agent any
+
     stages {
-        stage('Build') {
+        stage('Hello') {
             steps {
-                sh '''
-                    echo exit | sqlplus dummy/dummy@172.17.0.2:1521/ORCLCDB.localdomain @TICKET001.sql
-                '''
+                echo 'Hello World'
             }
         }
     }
