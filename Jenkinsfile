@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    CONNECT_STRING=dummy/dummy@172.17.0.2:1521/ORCLCDB.localdomain
+                    CONNECT_STRING=dummy/dummy1@172.17.0.2:1521/ORCLCDB.localdomain
                     sqlplus -s -L /NOLOG <<EOF
                     whenever sqlerror exit 1
                     whenever oserror exit 1
