@@ -1,4 +1,4 @@
 WHENEVER OSERROR EXIT FAILURE
 WHENEVER SQLERROR EXIT SQL.SQLCODE
 
-select sysdate from dual;
+selecct sysdate from dual;
