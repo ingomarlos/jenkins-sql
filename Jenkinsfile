@@ -28,11 +28,11 @@ pipeline {
         stage('Run Script') {
             steps {
                 sh '''
-                    ls -l TICKET001.sql
+                    ls -l ${FILENAME}
                     sqlplus dummy/dummy@172.17.0.2:1521/ORCLCDB.localdomain <<EOF
                     whenever sqlerror exit 1
                     whenever oserror exit 1
-                    @TICKET001.sql
+                    @${FILENAME}
                     exit
                     EOF
                    
