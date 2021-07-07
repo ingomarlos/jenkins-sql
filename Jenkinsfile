@@ -10,10 +10,10 @@ pipeline {
                 sh '''
                     CONNECT_STRING=dummy/dummy@172.17.0.2:1521/ORCLCDB.localdomain
                     sqlplus -s -L /NOLOG <<EOF
-                    whenever sqlerror exit 1
-                    whenever oserror exit 1
-                    CONNECT $CONNECT_STRING
-                    exit
+                      whenever sqlerror exit 1
+                      whenever oserror exit 1
+                      CONNECT $CONNECT_STRING
+                      exit
                     EOF
                     
                     SQLPLUS_RC=$?
@@ -28,14 +28,13 @@ pipeline {
         stage('Run Script') {
             steps {
                 sh '''
-                    ls -l ${FILENAME}
                     sqlplus dummy/dummy@172.17.0.2:1521/ORCLCDB.localdomain <<EOF
-                    whenever sqlerror exit 1
-                    whenever oserror exit 1
-                    @${FILENAME}
-                    exit
+                      whenever sqlerror exit 1
+                      whenever oserror exit 1
+                      @${FILENAME}
+                      exit
                     EOF
-                   
+                    echo $?
                 '''
             }
         }
