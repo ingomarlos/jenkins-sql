@@ -34,7 +34,7 @@ pipeline {
                       @${FILENAME}
                       exit
                     EOF
-                    echo $?
+                    echo "Exit code: $?"
                 '''
             }
         }
