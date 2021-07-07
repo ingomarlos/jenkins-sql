@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh '''
                    ls -l ${FILENAME}
-                   exit | sqlplus dummy/dummy1@172.17.0.2:1521/ORCLCDB.localdomain @${FILENAME}
+                   sqlplus dummy/dummy1@172.17.0.2:1521/ORCLCDB.localdomain @${FILENAME} </dev/null
                 '''
             }
         }
