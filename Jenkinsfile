@@ -29,10 +29,10 @@ pipeline {
             steps {
                 sh '''
                     sqlplus dummy/dummy@172.17.0.2:1521/ORCLCDB.localdomain <<EOF
-                      whenever sqlerror exit 1
+                      whenever sqlerror exit sql.sqlcode
                       whenever oserror exit 1
                       @${FILENAME}
-                      exit
+                      exit sql.sqlcode
                     EOF
                     echo "Exit code: $?"
                 '''
