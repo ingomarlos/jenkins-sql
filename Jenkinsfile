@@ -8,7 +8,7 @@ pipeline {
         stage('Test Connection') {
             steps {
                 sh '''
-                    CONNECT_STRING=dummy/dummy1@172.17.0.2:1521/ORCLCDB.localdomain
+                    CONNECT_STRING=dummy/dummy@172.17.0.2:1521/ORCLCDB.localdomain
                     sqlplus -s -L /NOLOG <<EOF
                     whenever sqlerror exit 1
                     whenever oserror exit 1
@@ -22,9 +22,6 @@ pipeline {
                     [ $SQLPLUS_RC -ne 0 ] && echo "Failed to connect"
                     
                     exit SQLPLUS_RC
-                   ls -l ${FILENAME}
-                   
-                   sqlplus dummy/dummy@172.17.0.2:1521/ORCLCDB.localdomain @${FILENAME} </dev/null
                 '''
             }
         }
@@ -32,7 +29,7 @@ pipeline {
             steps {
                 sh '''
                     ls -l ${FILENAME}
-                    sqlplus -s -L /NOLOG dummy/dummy1@172.17.0.2:1521/ORCLCDB.localdomain <<EOF
+                    sqlplus -s -L /NOLOG dummy/dummy@172.17.0.2:1521/ORCLCDB.localdomain <<EOF
                     whenever sqlerror exit 1
                     whenever oserror exit 1
                     @${FILENAME}
