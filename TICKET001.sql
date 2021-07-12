@@ -1,1 +1,1 @@
-select sysdates2 from dual;
+INSERT INTO "DUMMY"."TABLE1" (NAME, ADDRESS, CITY) VALUES ('Anton', 'Av Sao Joao2', 'SP')
