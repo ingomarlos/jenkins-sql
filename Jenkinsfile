@@ -10,8 +10,8 @@ pipeline {
                 sh '''
                     CONNECT_STRING=dummy/dummy@172.17.0.2:1521/ORCLCDB.localdomain
                     sqlplus -s -L /NOLOG <<EOF
-                      whenever sqlerror exit 1
-                      whenever oserror exit 1
+                      whenever sqlerror exit sql.sqlcode
+                      whenever oserror exit sql.sqlcode
                       CONNECT $CONNECT_STRING
                       exit
                     EOF
@@ -29,8 +29,8 @@ pipeline {
             steps {
                 sh '''
                     sqlplus dummy/dummy@172.17.0.2:1521/ORCLCDB.localdomain <<EOF
-                      whenever sqlerror exit failure
-                      whenever oserror exit failure
+                      whenever sqlerror exit sql.sqlcode
+                      whenever oserror exit sql.sqlcode
                       @${FILENAME}
                       exit sql.sqlcode
                     EOF
