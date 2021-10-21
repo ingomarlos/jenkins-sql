@@ -1,1 +1,0 @@
-INSERT INTO "DUMMY"."TABLE1" (NAME, ADDRESS, CITY) VALUES ('Anton', 'Av Sao Joao2', 'SP3');
