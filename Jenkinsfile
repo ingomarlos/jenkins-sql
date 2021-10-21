@@ -47,6 +47,11 @@ def approveScript() {
 def createJobs() {
     jobDsl scriptText: '''
 
+    folder('jobs') {
+      displayName('jobs')
+      description('jobs')
+    }
+
     jobList = 
     [
     'Job01', 
